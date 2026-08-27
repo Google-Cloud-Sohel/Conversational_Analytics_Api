@@ -13,10 +13,13 @@ def generate_ecommerce_data(num_records=10000):
     data = []
     for _ in range(num_records):
         data.append({
-            "order_id": fake.uuid4(),
+           "order_id": fake.uuid4(),
+            "customer_id": random.randint(1000, 99999),          
             "customer_name": fake.name(),
             "product_category": random.choice(categories),
+            "quantity": random.randint(1, 15),                   
             "order_amount": round(random.uniform(10.0, 2500.0), 2),
+            "discount_percent": random.randint(0, 40),           
             "order_date": fake.date_time_this_year(),
             "status": random.choice(statuses)
         })

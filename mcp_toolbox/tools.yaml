@@ -1,0 +1,58 @@
+# sources:
+#   - name: bq-connection
+#     kind: bigquery
+#     config:
+#       project_id: "keen-berm-506210-a8" 
+
+# tools:
+#   - name: list_bq_datasets
+#     kind: bigquery-list-datasets
+#     source: bq-connection
+#     description: "List all dataset IDs in the GCP project."
+
+#   - name: list_bq_tables
+#     kind: bigquery-list-tables
+#     source: bq-connection
+#     description: "List all table IDs contained within a specific dataset."
+
+#   - name: get_bq_table_schema
+#     kind: bigquery-get-table
+#     source: bq-connection
+#     description: "Retrieve schema, metadata, and column information for a BigQuery table."
+
+#   - name: execute_bq_sql
+#     kind: bigquery-execute-sql
+#     source: bq-connection
+#     description: "Execute arbitrary read-only SQL queries against BigQuery."
+sources:
+  bq-connection:
+    kind: bigquery
+    project: "keen-berm-506210-a8"
+
+tools:
+  list_bq_datasets:
+    kind: bigquery-list-dataset-ids
+    source: bq-connection
+    description: "List all dataset IDs in the GCP project."
+
+  list_bq_tables:
+    kind: bigquery-list-table-ids
+    source: bq-connection
+    description: "List all table IDs contained within a specific dataset."
+
+  get_bq_table_schema:
+    kind: bigquery-get-table-info
+    source: bq-connection
+    description: "Retrieve schema, metadata, and column information for a BigQuery table."
+
+  execute_bq_sql:
+    kind: bigquery-execute-sql
+    source: bq-connection
+    description: "Execute arbitrary read-only SQL queries against BigQuery."
+
+toolsets:
+  ecom_toolset:
+    - list_bq_datasets
+    - list_bq_tables
+    - get_bq_table_schema
+    - execute_bq_sql

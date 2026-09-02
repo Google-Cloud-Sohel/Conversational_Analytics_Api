@@ -1,0 +1,14 @@
+{
+  "criteria": {
+    "tool_trajectory_avg_score": 1.0,
+    "disclaimer_check": 1.0
+  },
+  "custom_metrics": {
+    "disclaimer_check": {
+      "code_config": {
+        "name": "ecom_agent.tests.custom_metrics.disclaimer_check"
+      },
+      "description": "Checks the agent's response contains the required financial disclaimer."
+    }
+  }
+}

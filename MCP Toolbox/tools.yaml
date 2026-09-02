@@ -1,0 +1,34 @@
+sources:
+  ecom-bq:
+    kind: bigquery
+    project: keen-berm-506210-a8
+
+tools:
+  list_datasets:
+    kind: bigquery-list-dataset-ids
+    source: ecom-bq
+    description: List BigQuery dataset IDs in the project.
+
+  list_tables:
+    kind: bigquery-list-table-ids
+    source: ecom-bq
+    description: List table IDs in a given BigQuery dataset.
+
+  get_table_info:
+    kind: bigquery-get-table-info
+    source: ecom-bq
+    description: Get schema and metadata for a BigQuery table.
+
+  execute_sql:
+    kind: bigquery-execute-sql
+    source: ecom-bq
+    description: >
+      Execute a GoogleSQL query against BigQuery and return results.
+      Prefer SELECT aggregations for revenue, orders, customers, and similar metrics.
+
+toolsets:
+  ecom_analytics:
+    - list_datasets
+    - list_tables
+    - get_table_info
+    - execute_sql

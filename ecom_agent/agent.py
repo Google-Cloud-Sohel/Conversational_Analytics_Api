@@ -20,6 +20,22 @@ DATA_AGENT_ID = "ecom_orders_analytics_agent"
 CONVERSATION_STATE_KEY = "data_agent_conversation_name"
 
 
+# --- Cached client ---
+# DataChatServiceClient construction opens a gRPC channel and fetches ADC
+# credentials. Building it once at module scope (instead of per tool call)
+# avoids paying that setup cost on every single turn.
+_data_chat_client = None
+
+
+def _get_data_chat_client() -> geminidataanalytics.DataChatServiceClient:
+    global _data_chat_client
+    if _data_chat_client is None:
+        _data_chat_client = geminidataanalytics.DataChatServiceClient(
+            client_options={"quota_project_id": PROJECT_ID}
+        )
+    return _data_chat_client
+
+
 def _get_or_create_conversation(
     client: geminidataanalytics.DataChatServiceClient,
     parent: str,
@@ -108,11 +124,7 @@ def _extract_text_from_chunk(chunk) -> list[str]:
 def query_conversational_analytics(query: str, tool_context: ToolContext) -> str:
     """Queries the BigQuery Conversational Analytics Data Agent with natural language questions about e-commerce orders, revenue, and customer metrics. Maintains conversation history across turns within the same session."""
 
-    # client_options ensures the quota project is explicit for this client too,
-    # avoiding the same ADC "quota project not set" 403 we hit via REST.
-    client = geminidataanalytics.DataChatServiceClient(
-        client_options={"quota_project_id": PROJECT_ID}
-    )
+    client = _get_data_chat_client()
     parent = f"projects/{PROJECT_ID}/locations/{DATA_AGENT_LOCATION}"
     agent_path = f"{parent}/dataAgents/{DATA_AGENT_ID}"
 
@@ -149,13 +161,20 @@ def query_conversational_analytics(query: str, tool_context: ToolContext) -> str
         conversation_reference=conversation_reference,
     )
 
-    # 4. Process the streaming response with fail-fast error handling
+    # 4. Process the streaming response with fail-fast error handling.
+    # We print each chunk as it arrives so progress is visible in the
+    # terminal even though ADK only sees the final joined string — useful
+    # for confirming the pipeline is progressing (schema lookup -> SQL
+    # generation -> execution -> analysis -> narrative) rather than hung.
     try:
         stream = client.chat(request=request)
 
         full_response = []
         for chunk in stream:
-            full_response.extend(_extract_text_from_chunk(chunk))
+            extracted = _extract_text_from_chunk(chunk)
+            if extracted:
+                print(f"[Data Agent progress] {extracted[0][:80]}...")
+            full_response.extend(extracted)
 
         return "\n\n".join(full_response) if full_response else "No text answer returned from the Data Agent."
 
@@ -177,10 +196,12 @@ root_agent = Agent(
     description="E-Commerce Analytics Assistant powered by BigQuery Conversational Analytics API.",
     instruction="""
     You are an expert E-Commerce Data Analytics Assistant.
-    For any questions regarding e-commerce metrics, sales, orders, revenue, or customer demographics:
-    - Always call the `query_conversational_analytics` tool to fetch accurate, grounded data from BigQuery.
-    - Provide a clear, well-structured explanation of the results returned by the tool.
-    - IMPORTANT: If the tool returns a CRITICAL ERROR, you must NOT retry, rephrase, or attempt the tool call again. You must immediately output the exact error message to the user without filtering.
+    When answering questions, follow these business definitions:
+    - 'Revenue' or 'Total Sales' refers to the sum of 'order_amount'.
+    - 'Customers' refers to unique counts of 'customer_id' or 'customer_name'.
+    - 'Active Orders' excludes orders where 'status' is 'Cancelled' or 'Refunded'.
+    
+    CRITICAL INSTRUCTION: Always append this exact disclaimer to your final response: "These figures are generated for internal analytics."
     """,
     tools=[query_conversational_analytics],
 )

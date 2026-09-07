@@ -1,6 +1,298 @@
+
 {
   "eval_set_id": "eval_set_1",
   "name": "eval_set_1",
-  "eval_cases": [],
+  "eval_cases": [
+    {
+      "eval_id": "case_1",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_1",
+          "user_content": {
+            "parts": [
+              { "text": "What is the total number of orders in June 2026?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "In June 2026, there were [total_orders_june_2026] total orders." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "case_2",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_2",
+          "user_content": {
+            "parts": [
+              { "text": "What is the total order amount for the Sports category?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "The total order amount for the Sports category is [total_order_amount_sports]." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "case_3",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_3",
+          "user_content": {
+            "parts": [
+              { "text": "How many orders currently have the status 'Delivered'?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "There are [delivered_orders_count] orders with the status 'Delivered'." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "case_4",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_4",
+          "user_content": {
+            "parts": [
+              { "text": "Who is the customer with the highest single order amount?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "The customer with the highest single order amount is [top_customer_name], with an order amount of [top_order_amount]." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "case_5",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_5",
+          "user_content": {
+            "parts": [
+              { "text": "What is the average order amount across all orders?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "The average order amount across all orders is [average_order_amount]." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "case_6",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_6",
+          "user_content": {
+            "parts": [
+              { "text": "How many orders were cancelled in the second quarter of 2026 (April to June)?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "There were [cancelled_orders_q2_2026] cancelled orders between April and June 2026." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "case_7",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_7",
+          "user_content": {
+            "parts": [
+              { "text": "Which product category has generated the most total revenue?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "The product category that has generated the most total revenue is [top_revenue_category], with total revenue of [top_revenue_amount]." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "case_8",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_8",
+          "user_content": {
+            "parts": [
+              { "text": "How many total items (quantity) were ordered by customer 'William Leon'?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "Customer William Leon ordered a total quantity of [customer_total_quantity] items." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "case_9",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_9",
+          "user_content": {
+            "parts": [
+              { "text": "What percentage of all orders currently have the status 'Pending'?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "[pending_orders_percentage]% of all orders currently have the status 'Pending'." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "case_10",
+      "conversation": [
+        {
+          "invocation_id": "invocation_id_10",
+          "user_content": {
+            "parts": [
+              { "text": "What is the total order amount, broken down by month, for the first half of 2026 (January to June)?" }
+            ],
+            "role": "user"
+          },
+          "final_response": {
+            "parts": [
+              { "text": "For the first half of 2026, total order amounts by month were: January: [jan_2026_total], February: [feb_2026_total], March: [mar_2026_total], April: [apr_2026_total], May: [may_2026_total], June: [jun_2026_total]." }
+            ],
+            "role": "model"
+          },
+          "intermediate_data": {
+            "tool_uses": [],
+            "intermediate_responses": []
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "",
+        "user_id": "",
+        "state": {}
+      }
+    }
+  ],
   "creation_timestamp": 1787838904.608028
 }

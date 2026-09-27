@@ -1,0 +1,82 @@
+{
+  "metrics": {
+    "general_quality": {
+      "kind": "managed",
+      "base": "GENERAL_QUALITY",
+      "requires_reference": false,
+      "requires_multi_turn": false,
+      "score_range": {
+        "min": 0,
+        "max": 1,
+        "type": "rubric"
+      },
+      "agents": [
+        ""
+      ]
+    },
+    "hallucination": {
+      "kind": "managed",
+      "base": "HALLUCINATION",
+      "requires_reference": false,
+      "requires_multi_turn": false,
+      "score_range": {
+        "min": 0,
+        "max": 1,
+        "type": "rubric"
+      },
+      "agents": [
+        ""
+      ]
+    },
+    "instruction_following": {
+      "kind": "managed",
+      "base": "INSTRUCTION_FOLLOWING",
+      "requires_reference": false,
+      "requires_multi_turn": false,
+      "score_range": {
+        "min": 1,
+        "max": 5,
+        "type": "pointwise"
+      },
+      "agents": [
+        ""
+      ]
+    },
+    "mandatory_disclaimer_check": {
+      "kind": "python_function",
+      "module": "tests/eval/custom_metrics.py",
+      "function": "disclaimer_check",
+      "agents": [
+        ""
+      ]
+    },
+    "financial_metric_accuracy": {
+      "kind": "python_function",
+      "module": "tests/eval/custom_metrics.py",
+      "function": "financial_accuracy",
+      "requires_reference": true,
+      "dataset_mapping": {
+        "prompt": {
+          "source_column": "user_inputs"
+        },
+        "response": {
+          "source_column": "final_response"
+        },
+        "reference": {
+          "source_column": "reference_data:expected_response"
+        }
+      },
+      "agents": [
+        ""
+      ]
+    },
+    "out_of_domain_handling": {
+      "kind": "python_function",
+      "module": "tests/eval/custom_metrics.py",
+      "function": "out_of_domain_handling",
+      "agents": [
+        ""
+      ]
+    }
+  }
+}

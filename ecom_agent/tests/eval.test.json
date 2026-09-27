@@ -8,18 +8,26 @@
           "invocation_id": "inv_001",
           "user_content": {
             "role": "user",
-            "parts": [{ "text": "What is our total revenue from all orders?" }]
+            "parts": [
+              {
+                "text": "What is our total revenue from all orders?"
+              }
+            ]
           },
           "final_response": {
             "role": "model",
-            "parts": [{ "text": "The total revenue from all orders is $12,466,401.04. These figures are generated for internal analytics." }]
+            "parts": [
+              {
+                "text": "The total revenue from all orders is $12,466,401.04. These figures are generated for internal analytics."
+              }
+            ]
           },
           "intermediate_data": {
             "tool_uses": [
               {
                 "name": "query_conversational_analytics",
                 "args": {
-                  "query": "What is our total revenue from all orders?"
+                  "query": "What is the total revenue from all orders?"
                 }
               }
             ]

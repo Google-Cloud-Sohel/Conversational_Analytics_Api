@@ -1,0 +1,62 @@
+$ adk eval ecom_mcp_agent --config_file_path C:\Users\blimt\OneDrive\Desktop\Conversational Analytics API\ecom_mcp_agent\eval_config.json eval_set_main__mcp_v2__blimt__20260927_11_003
+
+C:\Users\blimt\OneDrive\Desktop\Conversational Analytics API\venv\Lib\site-packages\google\adk\dependencies\vertexai.py:19: UserWarning: The `vertexai.preview.rag` module is deprecated and will be removed in a future version. Please migrate to the `agentplatform` client. For example:
+
+    import agentplatform
+
+    client = agentplatform.Client(project="your-project", location="us-central1")
+    client.rag.create_corpus(...)
+
+  from vertexai.preview import rag as rag
+C:\Users\blimt\OneDrive\Desktop\Conversational Analytics API\venv\Lib\site-packages\google\adk\evaluation\metric_evaluator_registry.py:239: UserWarning: [EXPERIMENTAL] MetricEvaluatorRegistry: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  return MetricEvaluatorRegistry()
+C:\Users\blimt\OneDrive\Desktop\Conversational Analytics API\venv\Lib\site-packages\google\adk\evaluation\local_eval_service.py:125: UserWarning: [EXPERIMENTAL] UserSimulatorProvider: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  user_simulator_provider: UserSimulatorProvider = UserSimulatorProvider(),
+2026-09-27 11:13:34,501 - INFO - eval_config.py:222 - eval_config.user_simulator_config has no `type` discriminator; defaulting to 'llm_backed'. Add `"type": "llm_backed"` to your config to make this explicit.
+C:\Users\blimt\OneDrive\Desktop\Conversational Analytics API\venv\Lib\site-packages\google\adk\cli\cli_tools_click.py:1333: UserWarning: [EXPERIMENTAL] UserSimulatorProvider: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  user_simulator_provider = UserSimulatorProvider(
+C:\Users\blimt\OneDrive\Desktop\Conversational Analytics API\venv\Lib\site-packages\google\adk\cli\cli_tools_click.py:1340: UserWarning: [EXPERIMENTAL] LocalEvalService: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  eval_service = LocalEvalService(
+C:\Users\blimt\OneDrive\Desktop\Conversational Analytics API\venv\Lib\site-packages\google\adk\evaluation\simulation\user_simulator_provider.py:156: UserWarning: [EXPERIMENTAL] LlmBackedUserSimulator: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  return simulator_factory(
+C:\Users\blimt\OneDrive\Desktop\Conversational Analytics API\venv\Lib\site-packages\google\adk\evaluation\simulation\llm_backed_user_simulator.py:139: UserWarning: [EXPERIMENTAL] UserSimulator: This feature is experimental and may change or be removed in future versions without notice. It may introduce breaking changes at any time.
+  super().__init__(config, config_type=LlmBackedUserSimulator.config_type)
+2026-09-27 11:13:34,510 - INFO - plugin_manager.py:121 - Plugin 'request_intercepter_plugin' registered.
+2026-09-27 11:13:34,511 - INFO - plugin_manager.py:121 - Plugin 'ensure_retry_options' registered.
+2026-09-27 11:13:36,864 - INFO - google_llm.py:223 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2026-09-27 11:13:40,197 - INFO - google_llm.py:293 - Response received from the model.
+2026-09-27 11:13:41,638 - INFO - google_llm.py:223 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2026-09-27 11:13:42,325 - INFO - google_llm.py:293 - Response received from the model.
+2026-09-27 11:13:42,375 - INFO - google_llm.py:223 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2026-09-27 11:13:42,375 - INFO - models.py:8707 - AFC is enabled with max remote calls: 10.
+2026-09-27 11:13:42,375 - WARNING - models.py:8711 - Direct use of automatic function calling (AFC) in AsyncModels.generate_content is not recommended. Instead, we recommend to use AFC in AsyncChat.send_message. Similarly, direct use of AFC in AsyncModels.generate_content_stream is not recommended. Instead, we recommend to use AFC in AsyncChat.send_message_stream.
+2026-09-27 11:13:45,916 - INFO - google_llm.py:293 - Response received from the model.
+2026-09-27 11:13:46,579 - INFO - google_llm.py:223 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2026-09-27 11:13:49,397 - INFO - google_llm.py:293 - Response received from the model.
+2026-09-27 11:13:50,809 - INFO - google_llm.py:223 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2026-09-27 11:13:51,496 - INFO - google_llm.py:293 - Response received from the model.
+2026-09-27 11:13:51,502 - INFO - google_llm.py:223 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2026-09-27 11:13:51,503 - INFO - models.py:8707 - AFC is enabled with max remote calls: 10.
+2026-09-27 11:13:54,404 - INFO - google_llm.py:293 - Response received from the model.
+2026-09-27 11:13:55,067 - INFO - google_llm.py:223 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2026-09-27 11:13:58,165 - INFO - google_llm.py:293 - Response received from the model.
+2026-09-27 11:13:58,169 - INFO - google_llm.py:223 - Sending out request, model: gemini-2.5-flash, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+2026-09-27 11:13:58,169 - INFO - models.py:8707 - AFC is enabled with max remote calls: 10.
+2026-09-27 11:14:01,509 - INFO - google_llm.py:293 - Response received from the model.
+2026-09-27 11:14:01,509 - INFO - llm_backed_user_simulator.py:296 - Stopping user message generation as the stop signal was detected.
+2026-09-27 11:14:01,510 - INFO - runners.py:2413 - Closing runner...
+2026-09-27 11:14:01,510 - INFO - runners.py:2363 - Closing toolset: ToolboxToolset
+2026-09-27 11:14:01,510 - INFO - runners.py:2365 - Successfully closed toolset: ToolboxToolset
+2026-09-27 11:14:01,510 - INFO - runners.py:2426 - Runner closed.
+2026-09-27 11:14:01,514 - INFO - local_eval_set_results_manager.py:67 - Writing eval result to file: C:\Users\blimt\OneDrive\Desktop\Conversational Analytics API\ecom_mcp_agent\.adk/eval_history\ecom_mcp_agent_eval_set_main__mcp_v2__blimt__20260927_11_003_1790487841.5145357.evalset_result.json
+Using evaluation criteria: criteria={} custom_metrics=None user_simulator_config=LlmBackedUserSimulatorConfig(type='llm_backed', model='gemini-2.5-flash', model_configuration=GenerateContentConfig(
+  thinking_config=ThinkingConfig(
+    include_thoughts=True,
+    thinking_budget=10240
+  )
+), max_allowed_invocations=4, custom_instructions=None, include_function_calls=False) live_model_config=None
+*********************************************************************
+Eval Run Summary
+eval_set_main__mcp_v2__blimt__20260927_11_003:
+  Tests passed: 0
+  Tests failed: 1

@@ -1,0 +1,15 @@
+﻿[project]
+name = "conversational-analytics-api"
+version = "0.1.0"
+requires-python = ">=3.10"
+dependencies = [
+    "google-adk==2.7.1",
+    "google-cloud-geminidataanalytics==0.13.1",
+    "google-cloud-aiplatform==1.165.1",
+    "protobuf==6.33.6",
+    "python-dotenv==1.2.3",
+    "toolbox-adk",
+]
+
+[tool.uv]
+package = false

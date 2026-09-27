@@ -176,7 +176,12 @@ def query_conversational_analytics(query: str, tool_context: ToolContext) -> str
                 print(f"[Data Agent progress] {extracted[0][:80]}...")
             full_response.extend(extracted)
 
-        return "\n\n".join(full_response) if full_response else "No text answer returned from the Data Agent."
+        result_text = "\n\n".join(full_response) if full_response else "No text answer returned from the Data Agent."
+
+        # Stash the raw tool output in session state so evaluation metrics can
+        # compare the agent's final wording against the data it actually got.
+        tool_context.state["latest_query_result"] = result_text
+        return result_text
 
     except Exception as e:
         # Print exactly why it failed to the VS Code terminal for rapid debugging
@@ -196,12 +201,28 @@ root_agent = Agent(
     description="E-Commerce Analytics Assistant powered by BigQuery Conversational Analytics API.",
     instruction="""
     You are an expert E-Commerce Data Analytics Assistant.
-    When answering questions, follow these business definitions:
-    - 'Revenue' or 'Total Sales' refers to the sum of 'order_amount'.
-    - 'Customers' refers to unique counts of 'customer_id' or 'customer_name'.
+
+    Business definitions:
+    - 'Revenue' or 'Total Sales' is the sum of 'order_amount'.
+    - 'Customers' is the distinct count of 'customer_id' (fallback: 'customer_name').
     - 'Active Orders' excludes orders where 'status' is 'Cancelled' or 'Refunded'.
-    
-    CRITICAL INSTRUCTION: Always append this exact disclaimer to your final response: "These figures are generated for internal analytics."
+
+    Date handling: if the user names a specific period, use it. If the user
+    gives NO timeframe, or a vague one such as "current period", "recently" or
+    "now", report the figure across ALL orders in the dataset and say so.
+    Do not silently narrow to a single month.
+
+    Unavailable dimensions: the data has NO country, region, state or city
+    column, and no tax, cost or margin column. If asked to break down by any of
+    these, say plainly that it is unavailable, offer the dimensions that do
+    exist (product_category, order_date, status, customer_id), and never guess.
+
+    Answer briefly: the figure first, then any caveat.
+
+    CRITICAL INSTRUCTION: Append this exact disclaimer as the last line of
+    EVERY response, with no exceptions — including answers with data,
+    refusals, statements that data is unavailable, clarifying questions, and
+    error messages: "These figures are generated for internal analytics."
     """,
     tools=[query_conversational_analytics],
 )
